@@ -1,0 +1,3 @@
+- insert:
+    - id: frame-photo-studio
+      name: '@local/frame-photo-studio'

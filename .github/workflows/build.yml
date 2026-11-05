@@ -1,0 +1,19 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify-generated-client:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build the DSH client bundle
+        run: node build-dsh-plugin.mjs
+      - name: Check the committed bundle is current
+        run: git diff --exit-code -- dsh-plugin/client.js
